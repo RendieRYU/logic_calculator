@@ -133,18 +133,3 @@ Pull request & saran dipersilakan. Langkah umum:
 4. Update README bila mengubah perilaku publik.
 5. Ajukan PR dengan deskripsi jelas.
 
-## 📝 Lisensi
-Kode ini bebas digunakan untuk keperluan edukasi & demonstrasi. Untuk format lisensi formal, Anda dapat menganggapnya berada di bawah lisensi MIT ringkas:
-
-```
-Hak Cipta (c) 2025
-
-Izin diberikan secara gratis kepada siapa pun yang memperoleh salinan perangkat lunak ini dan file dokumentasi terkait ("Perangkat Lunak"), untuk memperlakukan Perangkat Lunak tanpa batasan, termasuk tanpa batas hak untuk menggunakan, menyalin, mengubah, menggabungkan, memublikasikan, mendistribusikan, mensublisensikan, dan/atau menjual salinan Perangkat Lunak.
-PERANGKAT LUNAK DISEDIAKAN "SEBAGAIMANA ADANYA", TANPA JAMINAN APA PUN.
-```
-
-## 📧 Pertanyaan / Masukan
-Buat issue atau hubungi pembuat (jika repositori publik) — selamat bereksperimen!
-
----
-Jika Anda menambahkan fitur baru, perbarui bagian Dokumentasi terkait agar tetap sinkron. Selamat belajar logika! 🔍
