@@ -16,6 +16,9 @@ h1{margin:.1rem 0;font-size:clamp(1.6rem,3.2vw,2.5rem);letter-spacing:.04em;back
 .tagline{max-width:780px;margin:.25rem 0 0;font-size:.85rem;color:var(--text-dim);font-weight:500;}
 .header-actions{display:flex;gap:.5rem}
 button.ghost{background:var(--bg-alt2);border:1px solid var(--panel-border);color:var(--text);padding:.55rem .75rem;font-size:.85rem;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:.2s;position:relative;overflow:hidden}
+button.icon-btn .ico{width:18px;height:18px;display:block}
+button.has-icon .ico{width:16px;height:16px;margin-right:.35rem}
+button.has-icon{display:inline-flex;align-items:center}
 button.ghost::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#ffffff18,#ffffff00);opacity:0;transition:.4s}
 button.ghost:hover::after{opacity:1}
 button.ghost:hover{filter:brightness(1.15)}

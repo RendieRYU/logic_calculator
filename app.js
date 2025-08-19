@@ -15,6 +15,8 @@
   const btnShare = document.getElementById('btnShare');
   const themeToggle = document.getElementById('themeToggle');
   const compactToggle = document.getElementById('compactToggle');
+  const themeIconUse = document.getElementById('themeIconUse');
+  const compactIconUse = document.getElementById('compactIconUse');
   const varsContainer = document.getElementById('varsContainer');
   const evalResult = document.getElementById('evalResult');
   const errorBox = document.getElementById('errorBox');
@@ -82,8 +84,9 @@
 
   compactToggle && compactToggle.addEventListener('click',()=>{
     document.body.classList.toggle('compact');
-    localStorage.setItem('logicCompact', document.body.classList.contains('compact')? '1':'0');
-    compactToggle.textContent = document.body.classList.contains('compact')? '🗖':'📐';
+    const isCompact=document.body.classList.contains('compact');
+    localStorage.setItem('logicCompact', isCompact? '1':'0');
+    if(compactIconUse) compactIconUse.setAttribute('href', isCompact? '#ico-expand':'#ico-compact');
   });
 
   function setTheme(theme){
@@ -92,9 +95,8 @@
     localStorage.setItem('logicTheme',theme);
     // update meta theme-color
     const meta=document.getElementById('themeColorMeta');
-    if(meta){
-      meta.setAttribute('content', theme==='light'? '#f4f6f9':'#0f1115');
-    }
+  if(meta){ meta.setAttribute('content', theme==='light'? '#f4f6f9':'#0f1115'); }
+  if(themeIconUse){ themeIconUse.setAttribute('href', theme==='light'? '#ico-sun':'#ico-moon'); }
   }
   (function initTheme(){
     const saved=localStorage.getItem('logicTheme');
@@ -104,7 +106,7 @@
   (function initCompact(){
     if(localStorage.getItem('logicCompact')==='1'){
       document.body.classList.add('compact');
-      if(compactToggle) compactToggle.textContent='🗖';
+      if(compactIconUse) compactIconUse.setAttribute('href','#ico-expand');
     }
   })();
 

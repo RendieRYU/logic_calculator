@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- SVG Symbol Definitions -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="ico-eval" viewBox="0 0 24 24"><path fill="currentColor" d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.1 9.05 4.2-4.25-1.06-1.05-3.15 3.18-1.58-1.56-1.07 1.05 2.24 2.21c.2.2.52.19.72-.01Z"/></symbol>
+    <symbol id="ico-table" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 2v4h14V5H5Zm14 6H5v8h14v-8Z"/></symbol>
+    <symbol id="ico-clear" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3h6l1 2h4v2h-1l-1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7H4V5h4l1-2Zm8 4H7l1 11h8l1-11ZM9 9h2v7H9V9Zm4 0h2v7h-2V9Z"/></symbol>
+    <symbol id="ico-export" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 7 8h3v5h4V8h3l-5-5Zm-7 9v8h14v-8h2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8h2Z"/></symbol>
+    <symbol id="ico-share" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8a3 3 0 1 0-2.82-4H15a3 3 0 0 0 .18 1.03L8.91 9.14a3 3 0 0 0-1.82-.6 3 3 0 1 0 0 6c.68 0 1.31-.23 1.82-.6l6.27 4.11A3 3 0 0 0 15 19a3 3 0 1 0 .18-1.03l-6.27-4.11c.06-.27.09-.55.09-.84 0-.29-.03-.57-.09-.84l6.27-4.11c.5.37 1.14.6 1.82.6Z"/></symbol>
+    <symbol id="ico-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M12.8 2.3a1 1 0 0 1 .92.62A8 8 0 0 0 11 21a8 8 0 0 0 6.7-12.22 1 1 0 0 1 .52-1.44 1 1 0 0 1 1.15.34A10 10 0 1 1 12.14 1.8a1 1 0 0 1 .66.5Z"/></symbol>
+    <symbol id="ico-sun" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM11 0h2v4h-2V0Zm0 20h2v4h-2v-4ZM4 11H0v2h4v-2Zm24 0h-4v2h4v-2ZM5.64 3.64 7.05 5.05 4.22 7.9 2.8 6.5 5.64 3.64Zm14.14 14.14 1.42 1.42-2.83 2.83-1.41-1.41 2.82-2.84ZM3.64 18.36 6.5 15.5l1.41 1.41-2.83 2.83-1.44-1.38Zm16.72-12.9L18.95 5.05l2.83 2.83 1.42-1.41-2.84-2.82Z"/></symbol>
+    <symbol id="ico-compact" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h7v2H6v5H4V4Zm10 0h7v7h-2V6h-5V4Zm5 13v-5h2v7h-7v-2h5Zm-9 2H4v-7h2v5h5v2Z"/></symbol>
+    <symbol id="ico-expand" viewBox="0 0 24 24"><path fill="currentColor" d="M9 9H4V4h5v2H6v3h3v2Zm6 0h3V6h-3V4h5v5h-2v3h-3V9Zm-6 6v-3H6v3H4v5h5v-2H6v-3h3Zm6 0h3v3h-3v2h5v-5h-2v-3h-3v3Z"/></symbol>
+  </svg>
   <header class="site-header">
     <div class="branding">
       <div class="logo">⚙︎</div>
@@ -17,9 +29,9 @@
       </div>
     </div>
     <div class="header-actions">
-      <button id="themeToggle" class="ghost" title="Ganti tema (Terang/Gelap)" aria-label="Toggle Tema">🌗</button>
-      <button id="compactToggle" class="ghost" title="Mode Kompak" aria-label="Mode Kompak">📐</button>
-      <button id="btnShare" class="ghost" title="Salin URL dengan ekspresi saat ini" aria-label="Bagikan Ekspresi">🔗</button>
+      <button id="themeToggle" class="ghost icon-btn" title="Ganti tema (Terang/Gelap)" aria-label="Toggle Tema"><svg class="ico"><use id="themeIconUse" href="#ico-moon" /></svg></button>
+      <button id="compactToggle" class="ghost icon-btn" title="Mode Kompak" aria-label="Mode Kompak"><svg class="ico"><use id="compactIconUse" href="#ico-compact" /></svg></button>
+      <button id="btnShare" class="ghost icon-btn" title="Salin URL dengan ekspresi saat ini" aria-label="Bagikan Ekspresi"><svg class="ico"><use href="#ico-share" /></svg></button>
     </div>
   </header>
 
@@ -28,9 +40,9 @@
       <label for="exprInput" class="field-label">Ekspresi</label>
       <div class="input-row">
         <input id="exprInput" type="text" placeholder="Contoh: (A AND B) -> NOT C" autocomplete="off" />
-        <button id="btnEval" title="Evaluasi ekspresi dengan nilai variabel saat ini">Evaluasi</button>
-        <button id="btnTable" title="Bangkitkan tabel kebenaran">Tabel Kebenaran</button>
-        <button id="btnClear" title="Bersihkan">Bersih</button>
+  <button id="btnEval" class="has-icon" title="Evaluasi ekspresi dengan nilai variabel saat ini"><svg class="ico"><use href="#ico-eval" /></svg><span>Evaluasi</span></button>
+  <button id="btnTable" class="has-icon" title="Bangkitkan tabel kebenaran"><svg class="ico"><use href="#ico-table" /></svg><span>Tabel</span></button>
+  <button id="btnClear" class="has-icon" title="Bersihkan"><svg class="ico"><use href="#ico-clear" /></svg><span>Bersih</span></button>
       </div>
       <div class="helper-buttons" aria-label="Pintasan operator">
         <button data-insert="AND">AND</button>
@@ -80,7 +92,7 @@
       <h2>Tabel Kebenaran</h2>
       <div class="table-controls">
         <label><input type="checkbox" id="chkSimplify" /> Ringkas (hapus kolom perantara)</label>
-    <button id="btnExport" class="mini" title="Ekspor tabel ke CSV">Ekspor CSV</button>
+  <button id="btnExport" class="mini has-icon" title="Ekspor tabel ke CSV"><svg class="ico"><use href="#ico-export"/></svg><span>Ekspor</span></button>
       </div>
       <div id="tableContainer" class="table-scroll placeholder">Belum dibuat.</div>
     </section>
