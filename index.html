@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kalkulator Logika</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="branding">
+      <div class="logo">⚙︎</div>
+      <div class="titles">
+        <h1>Kalkulator Logika</h1>
+        <p class="tagline">Masukkan ekspresi logika menggunakan operator: AND, OR, XOR, NOT, NAND, NOR, XNOR, -> (implikasi), <-> (ekuivalen). Gunakan tanda kurung ( ).</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="ghost" title="Ganti tema (Terang/Gelap)">🌗</button>
+      <button id="btnShare" class="ghost" title="Salin URL dengan ekspresi saat ini">🔗</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel input-panel">
+      <label for="exprInput" class="field-label">Ekspresi</label>
+      <div class="input-row">
+        <input id="exprInput" type="text" placeholder="Contoh: (A AND B) -> NOT C" autocomplete="off" />
+        <button id="btnEval" title="Evaluasi ekspresi dengan nilai variabel saat ini">Evaluasi</button>
+        <button id="btnTable" title="Bangkitkan tabel kebenaran">Tabel Kebenaran</button>
+        <button id="btnClear" title="Bersihkan">Bersih</button>
+      </div>
+      <div class="helper-buttons" aria-label="Pintasan operator">
+        <button data-insert="AND">AND</button>
+        <button data-insert="OR">OR</button>
+        <button data-insert="XOR">XOR</button>
+        <button data-insert="NOT">NOT</button>
+        <button data-insert="NAND">NAND</button>
+        <button data-insert="NOR">NOR</button>
+        <button data-insert="XNOR">XNOR</button>
+        <button data-insert="->">-></button>
+        <button data-insert="<->"><-></button>
+        <button data-insert="(">(</button>
+        <button data-insert=")">)</button>
+      </div>
+      <details class="syntax-info">
+        <summary>Petunjuk & Sintaks</summary>
+        <ul>
+          <li>Operator NOT: NOT, !, ¬ (una-ry).</li>
+          <li>AND: AND, &, ∧</li>
+          <li>OR: OR, |, ∨</li>
+          <li>XOR: XOR, ^</li>
+          <li>NAND: NAND</li>
+          <li>NOR: NOR</li>
+          <li>XNOR / EKUIVALEN: XNOR, EQUIV, <->, <=></li>
+          <li>Implikasi: -> atau =></li>
+          <li>Konstanta: TRUE, FALSE, 1, 0</li>
+          <li>Variabel: huruf/identifer (A, B, X1, p, q, dsb).</li>
+          <li>Spasi bebas, tidak peka huruf besar/kecil untuk operator/konstanta.</li>
+        </ul>
+        <p>Prioritas (tinggi→rendah): NOT, AND/NAND, XOR, OR/NOR, IMPLIES, EQUIV/XNOR. Implikasi asosiatif kanan.</p>
+      </details>
+    </section>
+
+    <section class="panel vars-panel">
+      <h2>Variabel</h2>
+      <div id="varsContainer" class="vars-container empty">Belum ada variabel. Ketik ekspresi.</div>
+    </section>
+
+    <section class="panel result-panel accent-border">
+      <h2>Hasil Evaluasi</h2>
+      <div id="evalResult" class="result-box">&mdash;</div>
+      <div id="errorBox" class="error-box" hidden></div>
+      <div class="history" id="history" aria-label="Riwayat Evaluasi"></div>
+    </section>
+
+  <section class="panel table-panel">
+      <h2>Tabel Kebenaran</h2>
+      <div class="table-controls">
+        <label><input type="checkbox" id="chkSimplify" /> Ringkas (hapus kolom perantara)</label>
+    <button id="btnExport" class="mini" title="Ekspor tabel ke CSV">Ekspor CSV</button>
+      </div>
+      <div id="tableContainer" class="table-scroll placeholder">Belum dibuat.</div>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 Kalkulator Logika sederhana. Dibuat untuk demonstrasi.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
