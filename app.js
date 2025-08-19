@@ -53,15 +53,15 @@
   })
 
   btnExport && btnExport.addEventListener('click',()=>{
-    const csv = exportTruthTableCsv();
-    if(!csv){
+    const txt = exportTruthTableTxt();
+    if(!txt){
       flash(tableContainer,'shake');
       return;
     }
-    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const blob=new Blob([txt],{type:'text/plain;charset=utf-8;'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url; a.download='truth_table.csv'; a.click();
+    a.href=url; a.download='truth_table.txt'; a.click();
     setTimeout(()=>URL.revokeObjectURL(url),2000);
   });
 
@@ -347,18 +347,35 @@
     tableContainer.innerHTML=html;
   }
 
-  function exportTruthTableCsv(){
+  function exportTruthTableTxt(){
     if(!currentAst) return '';
     const vars=[...collectVars(currentAst)].sort();
     if(vars.length>16){return '';} // safety
-    const rows=1<<vars.length; const lines=[];
-    lines.push([...vars,'Result'].join(','));
+    const rows=1<<vars.length;
+    const headers=[...vars,'Result'];
+    // Hitung lebar kolom (minimal nama atau 5)
+    const colWidths=headers.map(h=>Math.max(h.length,5));
+    const data=[];
     for(let mask=0; mask<rows; mask++){
       const env={}; vars.forEach((v,idx)=>{env[v]=!!(mask & (1<<(vars.length-idx-1)));});
-      const val=evalAst(currentAst, env);
-      lines.push(vars.map(v=>env[v]?1:0).join(',')+','+(val?1:0));
+      const val=evalAst(currentAst, env)?1:0;
+      data.push([...vars.map(v=>env[v]?1:0), val]);
     }
-    return lines.join('\n');
+    // Pastikan kolom angka lebar minimal 5 hanya bila diperlukan; jika hanya 0/1 bisa 1
+    for(let c=0;c<headers.length;c++){
+      const numeric = data.every(row=>row[c]===0||row[c]===1);
+      if(numeric) colWidths[c]=Math.max(headers[c].length,1);
+    }
+    function pad(str,width){str=String(str); return str + ' '.repeat(Math.max(0,width-str.length));}
+    const sep='+'+colWidths.map(w=>'-'.repeat(w+2)).join('+')+'+';
+    let out=sep+'\n';
+    out+='|' + headers.map((h,i)=>' '+pad(h,colWidths[i])+' ').join('|') + '|\n';
+    out+=sep+'\n';
+    data.forEach(row=>{
+      out+='|' + row.map((cell,i)=>' '+pad(cell,colWidths[i])+' ').join('|') + '|\n';
+    });
+    out+=sep+'\n';
+    return out;
   }
 
   function pushHistory(expr,val,env){
