@@ -14,6 +14,7 @@
   const btnExport = document.getElementById('btnExport');
   const btnShare = document.getElementById('btnShare');
   const themeToggle = document.getElementById('themeToggle');
+  const compactToggle = document.getElementById('compactToggle');
   const varsContainer = document.getElementById('varsContainer');
   const evalResult = document.getElementById('evalResult');
   const errorBox = document.getElementById('errorBox');
@@ -79,15 +80,41 @@
     setTheme(next);
   });
 
+  compactToggle && compactToggle.addEventListener('click',()=>{
+    document.body.classList.toggle('compact');
+    localStorage.setItem('logicCompact', document.body.classList.contains('compact')? '1':'0');
+    compactToggle.textContent = document.body.classList.contains('compact')? '🗖':'📐';
+  });
+
   function setTheme(theme){
     if(theme==='light') document.documentElement.setAttribute('data-theme','light');
     else document.documentElement.setAttribute('data-theme','dark');
     localStorage.setItem('logicTheme',theme);
+    // update meta theme-color
+    const meta=document.getElementById('themeColorMeta');
+    if(meta){
+      meta.setAttribute('content', theme==='light'? '#f4f6f9':'#0f1115');
+    }
   }
   (function initTheme(){
     const saved=localStorage.getItem('logicTheme');
     if(saved) setTheme(saved); else if(matchMedia('(prefers-color-scheme: light)').matches) setTheme('light');
   })();
+
+  (function initCompact(){
+    if(localStorage.getItem('logicCompact')==='1'){
+      document.body.classList.add('compact');
+      if(compactToggle) compactToggle.textContent='🗖';
+    }
+  })();
+
+  // Enter key evaluate shortcut
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter' && !e.shiftKey){
+      e.preventDefault();
+      evaluateCurrent();
+    }
+  });
 
   function insertAtCursor(el,text){
     const start = el.selectionStart;
@@ -297,6 +324,10 @@
       tableContainer.innerHTML='<div class="placeholder">Terlalu banyak variabel ('+vars.length+'>12) untuk tabel</div>';
       return;
     }
+    if(vars.length>10){
+      const proceed=confirm('Tabel akan memiliki '+(1<<vars.length)+' baris. Lanjutkan?');
+      if(!proceed) return;
+    }
     const rows=1<<vars.length;
     const simplify=chkSimplify.checked;
     const headers=[...vars,'Hasil'];
@@ -355,4 +386,8 @@
 
   // Auto-init if existing default
   updateVariables();
+  // Respect reduced motion preference by adding a class if desired (optional future use)
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.classList.add('reduced-motion');
+  }
 })();
