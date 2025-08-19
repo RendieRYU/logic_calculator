@@ -43,14 +43,12 @@ main{display:grid;gap:1.2rem;padding:1.4rem clamp(.8rem,3vw,2rem);grid-template-
 .input-row button:hover,.helper-buttons button:hover, #btnExport:hover{background:linear-gradient(120deg,#2d4665,#20354d)}
 [data-theme="light"] .input-row button:hover,[data-theme="light"] .helper-buttons button:hover,[data-theme="light"] #btnExport:hover{background:#d4e0f7}
 .input-row button:active,.helper-buttons button:active,#btnExport:active{transform:translateY(1px)}
-.helper-buttons{display:flex;flex-wrap:wrap;gap:.45rem}
-.helper-buttons button{flex:1 0 auto;min-height:40px}
-@media (max-width:520px){
-	.helper-buttons{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch;}
-	.helper-buttons button{flex:0 0 auto}
-	.helper-buttons::-webkit-scrollbar{height:8px}
-	.helper-buttons::-webkit-scrollbar-thumb{background:#23313f;border-radius:20px}
-}
+.helper-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem}
+.helper-buttons button{width:100%;min-height:42px}
+.helper-buttons button{position:relative;font-weight:600;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.4rem .3rem;gap:.15rem;font-size:.6rem;letter-spacing:.08em}
+.helper-buttons .op-sym{font-size:1.05rem;line-height:1;font-weight:700;opacity:.9;font-family:Consolas,monaco,monospace}
+.compact .helper-buttons button{padding:.35rem .25rem}
+.compact .helper-buttons .op-label{display:none}
 .syntax-info{font-size:.72rem;background:var(--bg-alt2);padding:.7rem .85rem;border-radius:10px;border:1px solid var(--panel-border);line-height:1.35;position:relative}
 .syntax-info summary{cursor:pointer;font-weight:600;color:var(--accent);}
 .syntax-info[open]{box-shadow:0 0 0 1px #243140}
