@@ -1,6 +1,6 @@
 # Kalkulator Logika
 
->Aplikasi web mandiri (single-page) untuk mem-parsing, mengevaluasi, dan menganalisis ekspresi logika boolean dengan tabel kebenaran, riwayat evaluasi, ekspor CSV, serta dukungan tema Gelap/Terang.
+>Aplikasi web mandiri (single-page) untuk mem-parsing, mengevaluasi, dan menganalisis ekspresi logika boolean dengan tabel kebenaran, riwayat evaluasi, ekspor TXT, serta dukungan tema Gelap/Terang.
 
 ## 🔑 Fitur Utama
 - Parser custom (tanpa library eksternal) dengan AST
